@@ -1,13 +1,13 @@
 FROM golang:latest
 
-WORKDIR /
+WORKDIR /app
 
-RUN rm -rf ./src
+COPY go.mod go.sum ./
+
+RUN go mod download
 
 COPY . .
 
-RUN go get -d -v ./...
+RUN go build -o main ./src
 
-RUN go install -v ./...
-
-CMD ["go" "run" "./src/main.go"]
+CMD ["./main"]
