@@ -2,6 +2,8 @@ FROM golang:latest
 
 WORKDIR /
 
+RUN rm -rf ./src
+
 COPY . .
 
 RUN go get -d -v ./...
