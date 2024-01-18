@@ -9,5 +9,5 @@ RUN go mod download
 COPY . .
 
 RUN go build -o main ./src
-
+ 
 CMD ["./main"]
