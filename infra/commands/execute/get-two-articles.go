@@ -109,8 +109,8 @@ func GetTwoArticles(session *discordgo.Session, interation *discordgo.Interactio
 	first := articleStruct.Data.Value[0]
 	second := articleStruct.Data.Value[1]
 
-	phrase := "Titulo: " + first.ArtigoTitle + "\n" + "Subtitulo: " + first.ArtigoSubtitle + "\n" + "Link: https://seliganamidia.xyz/artigo/" + first.ArtigoUUID + "\n --------------------------------------------------- \n"
-	phrase2 := "Titulo: " + second.ArtigoTitle + "\n" + "Subtitulo: " + second.ArtigoSubtitle + "\n" + "Link: https://seliganamidia.xyz/artigo/" + second.ArtigoUUID + "\n\n"
+	phrase := "Titulo: " + first.ArtigoTitle + "\n" + "Subtitulo: " + first.ArtigoSubtitle + "\n" + "Link: https://seliganamidia.xyz/jornal/" + first.ArtigoUUID + "\n --------------------------------------------------- \n"
+	phrase2 := "Titulo: " + second.ArtigoTitle + "\n" + "Subtitulo: " + second.ArtigoSubtitle + "\n" + "Link: https://seliganamidia.xyz/jornal/" + second.ArtigoUUID + "\n\n"
 
 	session.InteractionRespond(interation.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
