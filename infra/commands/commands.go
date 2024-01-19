@@ -8,5 +8,6 @@ import (
 var CommandsDetails = CommandLabels
 
 var Handlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
-	"basic-command": CommandExecute.BasicCommandExecute,
+	"basic-command":    CommandExecute.BasicCommandExecute,
+	"get-two-articles": CommandExecute.GetTwoArticles,
 }
