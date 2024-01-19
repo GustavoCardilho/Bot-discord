@@ -5,12 +5,7 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-var CommandsDetails = []*discordgo.ApplicationCommand{
-	{
-		Name:        "basic-command",
-		Description: "Basic command",
-	},
-}
+var CommandsDetails = CommandLabels
 
 var Handlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
 	"basic-command": CommandExecute.BasicCommandExecute,
