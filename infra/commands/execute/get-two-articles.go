@@ -64,6 +64,7 @@ func GetTwoArticles(session *discordgo.Session, interation *discordgo.Interactio
 			Type: discordgo.InteractionResponseChannelMessageWithSource,
 			Data: &discordgo.InteractionResponseData{
 				Content: "Erro ao buscar os artigos",
+				Flags:   discordgo.MessageFlagsEphemeral,
 			},
 		})
 		return
@@ -107,15 +108,38 @@ func GetTwoArticles(session *discordgo.Session, interation *discordgo.Interactio
 	}
 
 	first := articleStruct.Data.Value[0]
-	second := articleStruct.Data.Value[1]
-
-	phrase := "Titulo: " + first.ArtigoTitle + "\n" + "Subtitulo: " + first.ArtigoSubtitle + "\n" + "Link: https://seliganamidia.xyz/jornal/" + first.ArtigoUUID + "\n --------------------------------------------------- \n"
-	phrase2 := "Titulo: " + second.ArtigoTitle + "\n" + "Subtitulo: " + second.ArtigoSubtitle + "\n" + "Link: https://seliganamidia.xyz/jornal/" + second.ArtigoUUID + "\n\n"
 
 	session.InteractionRespond(interation.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{
-			Content: string(phrase + phrase2),
+			Flags: discordgo.MessageFlagsEphemeral,
+			Embeds: []*discordgo.MessageEmbed{
+				{
+					Title:       first.ArtigoTitle,
+					Description: first.ArtigoSubtitle,
+					URL:         "https://seliganamidia.xyz/jornal/" + first.ArtigoUUID,
+					Thumbnail: &discordgo.MessageEmbedThumbnail{
+						URL: "https://seliganamidia.xyz/assets/img/logo.png",
+
+						Width:  100,
+						Height: 100,
+					},
+
+					Fields: []*discordgo.MessageEmbedField{
+						{
+							Name:   "Autor",
+							Value:  first.Usuario.UsuarioNome,
+							Inline: true,
+						},
+						{
+							Name:   "Data",
+							Value:  first.CreatedAt,
+							Inline: true,
+						},
+					},
+					Color: 0x00ff00,
+				},
+			},
 		},
 	})
 
